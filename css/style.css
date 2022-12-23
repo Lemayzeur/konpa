@@ -326,6 +326,7 @@ header.sticky .social-links.hd-v li a:hover {
 	max-width: 161px;
 }
 
+
 /* MAIN BANNER */
 
 .banner-slide {
@@ -3199,14 +3200,26 @@ header.sticky .social-links.hd-v li a:hover {
 /* LANDING PAGE */
 
 .landing-banner {
- 	// background-image: url(http://jellydemos.com/html/musize/assets/images/resources/landing/bg1.jpg);
-	background-image: linear-gradient(to right top, #68006a, #77004f, #7b0035, #78001c, #6e0000);
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding: 100px 0 120px;
+	position: relative;
+	height: 120vh;
+	overflow: hidden;
 }
+
+.landing-banner-content{
+	padding: 100px 0 120px;
+	position: absolute;
+}
+
+.landing-banner-video {
+	top: -100px;
+	position: relative;
+	z-index: -1;
+}
+
 .ld-logo {
-	margin-bottom: 137px;
+	margin-bottom: 110px;
 	max-width: 190px;
 }
 .ld-text {
