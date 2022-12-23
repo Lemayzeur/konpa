@@ -480,6 +480,41 @@ header.sticky .social-links.hd-v li a:hover {
 	transform: translateX(-50%);
 }
 
+/* STAT-ACTION */
+.stat-action {
+	display: flex;
+	/* background-color:  rgba(0,3,6,0.67); */
+	line-height: 2rem;
+	padding: 15px 0;
+}
+
+.stat-list ul{
+	list-style-type: none;
+	margin-right: 30px;
+}
+
+.stat-item{
+	display: inline-block;
+	padding: 0 1rem;
+	border-right:  2px solid rgba(0,3,6,0.67);
+}
+
+.stat-icon{
+	margin-right: 4px;
+}
+
+.stat-text{
+	font-size: .9rem;
+	text-transform: uppercase;
+}
+
+.action-list button{
+	padding: .2rem .8rem;
+	margin-right: 10px;
+}
+
+/* STAT-ACTION */
+
 
 /* OUR SHOWS*/
 
@@ -1815,7 +1850,7 @@ header.sticky {
 	left: 0;
 	width: 100%;
 	z-index: 999999;
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, .8);
 	box-shadow: 0 0 10px rgba(0,0,0,0.10);
 	padding-top: 15px;
 }
@@ -2818,7 +2853,7 @@ header.sticky .social-links.hd-v li a:hover {
 	position: relative;
 }
 .testi-lg-info {
-	background-color: #000000;
+	background-color: rgb(0, 0, 0, .7);
 	padding: 50px;
 	position: absolute;
 	bottom: 0;
