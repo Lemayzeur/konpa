@@ -53,6 +53,7 @@ body {
 }
 ul {
 	list-style: none;
+	text-align: right;
 }
 a:hover {
 	text-decoration: none;
@@ -2820,10 +2821,10 @@ header.sticky .social-links.hd-v li a:hover {
 }
 .testi-lg-info {
 	background-color: #000000;
-	padding: 50px;
+	padding: 20px;
 	position: absolute;
 	bottom: 0;
-	right: 20%;
+	right: 0;
 	max-width: 610px;
 }
 .testi-lg-info > span {
@@ -2862,7 +2863,7 @@ header.sticky .social-links.hd-v li a:hover {
 .slick-next,
 .slick-prev {
 	top: auto;
-	bottom: 242px;
+	bottom: 192px;
 	right: 20%;
 	width: 64px;
 	height: 64px;
@@ -3216,11 +3217,12 @@ header.sticky .social-links.hd-v li a:hover {
 	top: -100px;
 	position: relative;
 	z-index: -1;
+	width: 100%;
 }
 
 .ld-logo {
 	margin-bottom: 110px;
-	max-width: 190px;
+	max-width: 250px;
 }
 .ld-text {
 	max-width: 760px;
