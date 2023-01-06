@@ -106,8 +106,7 @@ section {
 	display: block;
 	position: relative;
 }
-p {
-}
+
 a {
 	color: inherit;
 }
@@ -324,6 +323,18 @@ header nav > ul > li > a:hover {
 .social-links.hd-v li a {
 	color: #fff;
 }
+
+.stat-action .social-links.hd-v{
+	padding-bottom: 0px;
+	padding-right: 30px;
+	text-align: right;
+	flex: 1;
+}
+
+.stat-action .social-links.hd-v li a {
+	color: black;
+}
+
 .social-links.hd-v li a:hover,
 header.sticky .social-links.hd-v li a:hover {
 	color: #f559a4;
@@ -1656,7 +1667,6 @@ a.jp-playlist-item.jp-playlist-current {
 	top: 0;
 	left: 100%;
 	color: #010000;
-	font-size: 
 }
 
 .lg-social {
