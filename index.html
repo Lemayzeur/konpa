@@ -19,6 +19,9 @@
 	<script src="https://kit.fontawesome.com/e9236feb64.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 
@@ -35,21 +38,46 @@
 	</div>
 
 	<div class="landing-page">
+	
+		<style>
+		
+		.type-wrap b.is-active {
+			 position: relative;
+		}
+		.type-wrap b {
+			 display: inline-block;
+			 position: relative;
+			 white-space: nowrap;
+			 text-align:center
+			 top: 0;
+		}
+
+</style>
 
 		<section class="landing-banner">
 			<div class="landing-banner-content">
-				<div class="container-fluid ">
-					<div class="ld-text">
-						<img src="https://raw.githubusercontent.com/Lemayzeur/konpa/main/assets/images/logo.png" alt="" class="ld-logo">
-						<h2>Your new best way to enjoy Konpa</h2>
-						<p>One culture, a gender, the best platform</p>
-						<a href="band.html" title="" class="ld-btn">Join for free</a>
-						<div class="pw-img">
-							<img src="https://raw.githubusercontent.com/Lemayzeur/konpa/main/assets/images/pw.png" alt="">
-						</div>
-					</div><!--ld-text end-->
-				</div>
+			
+				<img src="https://raw.githubusercontent.com/Lemayzeur/konpa/main/assets/images/logo.png" alt="" class="ld-logo">
+			
+
+							<div class="ld-text text-center">
+								<section style="background-color: rgba(0,0,0,0.4);padding:20px;">
+									<h2 class="">Your new best way to enjoy Konpa</h2>
+									
+									<p class="type-line typing" style="font-family: 'Roboto', sans-serif;font-weight:300;text-transform:uppercase;width: 100%">
+										<span class="type-wrap">
+											<b class="is-active">One culture, a gender, the best platform</b>
+										<span>
+									</p>
+									<a href="band.html" title="" class="ld-btn">Browse the industry</a>
+									<a href="band.html" title="" class="ld-btn-2">Join for free</a>
+									<div class="pw-img">
+										<img src="https://raw.githubusercontent.com/Lemayzeur/konpa/main/assets/images/pw.png" alt="">
+									</div>
+								</section>
+							</div><!--ld-text end-->
 			</div>
+					
 			<video autoplay loop muted class="landing-banner-video">
 				<source src="https://c9hstatic.s3.us-east-2.amazonaws.com/avantaj/konpa2.mp4" type="video/mp4">
 			</video>
@@ -327,7 +355,163 @@
 	<script src="js/plugin/slick.min.js"></script>
 	<script src="js/script.js"></script>
 
+	<script>
+		jQuery(document).ready(function($){
+	//set animation timing
+	var animationDelay = 0,
+		//loading bar effect
+		barAnimationDelay = 8000,
+		barWaiting = barAnimationDelay - 4000, //3000 is the duration of the transition on the loading bar - set in the scss/css file
+		//letters effect
+		lettersDelay = 600,
+		//type effect
+		typeLettersDelay = 2200,
+		selectionDuration = 1600,
+		typeAnimationDelay = selectionDuration + 1900,
+		//typing effect 
+		revealDuration = 2200,
+		revealAnimationDelay = 2200;
+	
+	initHeadline();
+	
 
+	function initHeadline() {
+		//insert <i> element for each letter of a changing word
+		singleLetters($('.type-line.letters').find('b'));
+		//initialise headline animation
+		animateHeadline($('.type-line'));
+	}
+
+	function singleLetters($words) {
+		$words.each(function(){
+			var word = $(this),
+				letters = word.text().split(''),
+				selected = word.hasClass('is-active');
+			for (i in letters) {
+				if(word.parents('.rotate-2').length > 0) letters[i] = '<em>' + letters[i] + '</em>';
+				letters[i] = (selected) ? '<i class="in">' + letters[i] + '</i>': '<i>' + letters[i] + '</i>';
+			}
+		    var newLetters = letters.join('');
+		    word.html(newLetters).css('opacity', 1);
+		});
+	}
+
+	function animateHeadline($headlines) {
+		var duration = animationDelay;
+		$headlines.each(function(){
+			var headline = $(this);
+			
+			if(headline.hasClass('loading-bar')) {
+				duration = barAnimationDelay;
+				setTimeout(function(){ headline.find('.type-wrap').addClass('is-loading') }, barWaiting);
+			} else if (headline.hasClass('typing')){
+				var spanWrapper = headline.find('.type-wrap'),
+					newWidth = spanWrapper.width() + 10
+				spanWrapper.css('width', newWidth);
+			} else if (!headline.hasClass('type') ) {
+				//assign to .type-wrap the width of its longest word
+				var words = headline.find('.type-wrap b'),
+					width = 0;
+				words.each(function(){
+					var wordWidth = $(this).width();
+				    if (wordWidth > width) width = wordWidth;
+				});
+				headline.find('.type-wrap').css('width', width);
+			};
+
+			//trigger animation
+			setTimeout(function(){ hideWord( headline.find('.is-active').eq(0) ) }, duration);
+		});
+	}
+
+	function hideWord($word) {
+		var nextWord = takeNext($word);
+		
+		if($word.parents('.type-line').hasClass('type')) {
+			var parentSpan = $word.parent('.type-wrap');
+			parentSpan.addClass('selected').removeClass('waiting');	
+			setTimeout(function(){ 
+				parentSpan.removeClass('selected'); 
+				$word.removeClass('is-active').addClass('is-hidden').children('i').removeClass('in').addClass('out');
+			}, selectionDuration);
+			setTimeout(function(){ showWord(nextWord, typeLettersDelay) }, typeAnimationDelay);
+		
+		} else if($word.parents('.type-line').hasClass('letters')) {
+			var bool = ($word.children('i').length >= nextWord.children('i').length) ? true : false;
+			hideLetter($word.find('i').eq(0), $word, bool, lettersDelay);
+			showLetter(nextWord.find('i').eq(0), nextWord, bool, lettersDelay);
+
+		}  else if($word.parents('.type-line').hasClass('typing')) {
+			$word.parents('.type-wrap').animate({ width : '2px' }, revealDuration, function(){
+				switchWord($word, nextWord);
+				showWord(nextWord);
+			});
+
+		} else if ($word.parents('.type-line').hasClass('loading-bar')){
+			$word.parents('.type-wrap').removeClass('is-loading');
+			switchWord($word, nextWord);
+			setTimeout(function(){ hideWord(nextWord) }, barAnimationDelay);
+			setTimeout(function(){ $word.parents('.type-wrap').addClass('is-loading') }, barWaiting);
+
+		} else {
+			switchWord($word, nextWord);
+			setTimeout(function(){ hideWord(nextWord) }, animationDelay);
+		}
+	}
+
+	function showWord($word, $duration) {
+		if($word.parents('.type-line').hasClass('type')) {
+			showLetter($word.find('i').eq(0), $word, false, $duration);
+			$word.addClass('is-active').removeClass('is-hidden');
+
+		}  else if($word.parents('.type-line').hasClass('typing')) {
+			$word.parents('.type-wrap').animate({ 'width' : $word.width() + 10 }, revealDuration, function(){ 
+				setTimeout(function(){ hideWord($word) }, revealAnimationDelay); 
+			});
+		}
+	}
+
+	function hideLetter($letter, $word, $bool, $duration) {
+		$letter.removeClass('in').addClass('out');
+		
+		if(!$letter.is(':last-child')) {
+		 	setTimeout(function(){ hideLetter($letter.next(), $word, $bool, $duration); }, $duration);  
+		} else if($bool) { 
+		 	setTimeout(function(){ hideWord(takeNext($word)) }, animationDelay);
+		}
+
+		if($letter.is(':last-child') && $('html').hasClass('no-csstransitions')) {
+			var nextWord = takeNext($word);
+			switchWord($word, nextWord);
+		} 
+	}
+
+	function showLetter($letter, $word, $bool, $duration) {
+		$letter.addClass('in').removeClass('out');
+		
+		if(!$letter.is(':last-child')) { 
+			setTimeout(function(){ showLetter($letter.next(), $word, $bool, $duration); }, $duration); 
+		} else { 
+			if($word.parents('.type-line').hasClass('type')) { setTimeout(function(){ $word.parents('.type-wrap').addClass('waiting'); }, 200);}
+			if(!$bool) { setTimeout(function(){ hideWord($word) }, animationDelay) }
+		}
+	}
+
+	function takeNext($word) {
+		return (!$word.is(':last-child')) ? $word.next() : $word.parent().children().eq(0);
+	}
+
+	function takePrev($word) {
+		return (!$word.is(':first-child')) ? $word.prev() : $word.parent().children().last();
+	}
+
+	function switchWord($oldWord, $newWord) {
+		$oldWord.removeClass('is-active').addClass('is-hidden');
+		$newWord.removeClass('is-hidden').addClass('is-active');
+	}
+});
+	
+	</script>
 
 </body>
 
