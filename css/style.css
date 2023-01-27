@@ -3209,8 +3209,12 @@ header.sticky .social-links.hd-v li a:hover {
 }
 
 .landing-banner-content{
-	padding: 100px 0 120px;
 	position: absolute;
+	display: flex;
+	height: 100vh;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
 }
 
 .landing-banner-video {
@@ -3221,21 +3225,28 @@ header.sticky .social-links.hd-v li a:hover {
 }
 
 .ld-logo {
-	margin-bottom: 110px;
 	max-width: 250px;
+	position:absolute;
+	top: 50px;
+	left: 120px;
 }
 .ld-text {
-	max-width: 760px;
+	/* max-width: 760px; */
+	width: 80%;
 }
-.ld-text > h2 {
+.ld-text h2 {
 	color: #f3f6f7;
-	font-size: 82px;
+	font-size: 52px;
 	line-height: 85px;
-	margin-bottom: 38px;
+	margin-bottom: 28px;
+	font-family: 'Roboto', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: 700;
 }
 .ld-text p {
 	color: #fef504;
-	font-size: 18px;
+	font-size: 25px;
 	line-height: 30px;
 	margin-bottom: 44px;
 }
@@ -3247,15 +3258,38 @@ header.sticky .social-links.hd-v li a:hover {
 	line-height: 58px;
 	font-weight: 700;
 	padding: 0 35px;
-	border-radius: 30px;
 	border: 1px solid #fff;
 	text-transform: capitalize;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
+
+
+
+.ld-btn-2 {
+	display: inline-block;
+	color: #fff;
+	font-size: 20px;
+	height: 60px;
+	line-height: 58px;
+	font-weight: 700;
+	padding: 0 35px;
+	border: 1px solid #fff;
+	text-transform: capitalize;
+	margin-bottom: 10px;
+	background-color: blue;
+	margin-left: 20px;
+}
+
 .ld-btn:hover {
 	background-color: #fff;
 	color: #000;
 }
+
+.ld-btn-2:hover {
+	background-color: #ddd;
+	color: #000;
+}
+
 .pw-img {
 	margin-top: 30px;
 }
