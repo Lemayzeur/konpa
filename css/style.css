@@ -53,7 +53,6 @@ body {
 }
 ul {
 	list-style: none;
-	text-align: right;
 }
 a:hover {
 	text-decoration: none;
@@ -102,8 +101,7 @@ section {
 	display: block;
 	position: relative;
 }
-p {
-}
+
 a {
 	color: inherit;
 }
@@ -1611,7 +1609,6 @@ a.jp-playlist-item.jp-playlist-current {
 	top: 0;
 	left: 100%;
 	color: #010000;
-	font-size: 
 }
 
 .lg-social {
@@ -3194,7 +3191,6 @@ header.sticky .social-links.hd-v li a:hover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-
 }
 
 
@@ -3211,17 +3207,20 @@ header.sticky .social-links.hd-v li a:hover {
 .landing-banner-content{
 	position: absolute;
 	display: flex;
-	height: 100vh;
+	min-height: 120vh;
 	width: 100%;
 	align-items: center;
 	justify-content: center;
 }
 
 .landing-banner-video {
-	top: -100px;
+	/* top: -100px; */
 	position: relative;
 	z-index: -1;
-	width: 100%;
+	width: 100vw;
+	height: 120vh;
+	object-fit: cover;
+	object-position: center;
 }
 
 .ld-logo {
@@ -3230,6 +3229,7 @@ header.sticky .social-links.hd-v li a:hover {
 	top: 50px;
 	left: 120px;
 }
+	
 .ld-text {
 	/* max-width: 760px; */
 	width: 80%;
@@ -3409,14 +3409,18 @@ header.sticky .social-links.hd-v li a:hover {
 
 .landing-footer {
 	background-color: #000000;
-	padding: 87px 0;
+	padding: 0 0 87px 0;
 }
+
 .ld-ft {
 	text-align: center;
 }
+
 .ld-ft > img {
 	margin-bottom: 55px;
+	max-width: 70%;
 }
+
 .dp-bg > img {
 	max-width: 100%;
 }
